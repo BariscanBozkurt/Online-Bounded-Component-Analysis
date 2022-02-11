@@ -212,7 +212,10 @@ class OnlineBCA:
             idx = np.arange(samples)
             
         if whiten:
-            X_white, W_pre = self.whiten_signal(X.T, type_ = whiten_type).T
+            X_white, W_pre = self.whiten_signal(X.T, type_ = whiten_type)
+            X_white = X_white.T
+            A = W_pre @ A
+            self.A = A
         else:
             X_white = X 
             
